@@ -50,11 +50,64 @@ function rtm_perm() {
  */
 function rtm_function_list() {
   return array(
+    // auth
     'rtm.auth.checkToken' => 'rtm_check_token',
-    'rtm.auth.getFrob' => 'rtm_get_frob',
+//    'rtm.auth.getFrob' => 'rtm_get_frob',
+//    'rtm.auth.getToken' => 'rtm_get_token',
+//    // contacts
+//    'rtm.contacts.add' => 'rtm_add_contact',
+//    'rtm.contacts.delete' => 'rtm_delete_contact',
+//    'rtm.contacts.getList' => 'rtm_get_contact_list',
+//    // groups
+//    'rtm.groups.add' => 'rtm_add_group',
+//    'rtm.groups.addContact' => 'rtm_add_contact_to_group',
+//    'rtm.groups.delete' => 'rtm_delete_group',
+//    'rtm.groups.getList' => 'rtm_get_group_list', 
+//    'rtm.groups.removeContact' => 'rtm_remove_contact_from_group',
+//    // lists
+//    'rtm.lists.add' => 'rtm_add_list',
+//    'rtm.lists.archive' => 'rtm_archive_list',
+//    'rtm.lists.delete' => 'rtm_delete_list',
+//    'rtm.lists.getList' => 'rtm_get_list',
+//    'rtm.lists.setDefaultList' => 'rtm_set_default_list',
+//    'rtm.lists.setName' => 'rtm_set_list_name',
+//    'rtm.lists.unarchive' => 'rtm_unarchive_list',
+//    // locations
+//    'rtm.locations.getList' => 'rtm_get_location_list',
+    // reflection
     'rtm.reflection.getMethods' => 'rtm_get_methods',
     'rtm.reflection.getMethodInfo' => 'rtm_get_method_info',
-  );
+//    // settings
+//    'rtm.settings.getList' => 'rtm_get_settings',
+//    'rtm.tasks.add' => 'rtm_add_task',
+//    'rtm.tasks.addTags' => 'rtm_add_tags',
+//    'rtm.tasks.complete' => 'rtm_complete_task',
+//    'rtm.tasks.delete' => 'rtm_delete_task',
+//    'rtm.tasks.getList' => 'rtm_get_task_list',
+//    'rtm.tasks.movePriority' => 'rtm_move_task_priority',
+//    'rtm.tasks.moveTo' => 'rtm_task_move', 
+//    'rtm.tasks.postpone' => 'rtm_postpone_task',
+//    'rtm.tasks.removeTags' => 'rtm_remove_tags',
+//    'rtm.tasks.setDueDate' => 'rtm_set_task_due_date',
+//    'rtm.tasks.setEstimate' => 'rtm_set_task_estimate',
+//    'rtm.tasks.setLocation' => 'rtm_set_task_location',
+//    'rtm.tasks.setName' => 'rtm_set_task_name',
+//    'rtm.tasks.setPriority' => 'rtm_set_task_priority',
+//    'rtm.tasks.setRecurrence' => 'rtm_set_task_recurrence',
+//    'rtm.tasks.setTags' => 'rtm_set_task_tags',
+//    'rtm.tasks.setURL' => 'rtm_set_task_url',
+//    'rtm.tasks.uncomplete' => 'rtm_uncomplete_task',
+//    'rtm.tasks.notes.add' => 'rtm_add_task_note',
+//    'rtm.tasks.notes.delete' => 'rtm_delete_task_note',
+//    'rtm.tasks.notes.edit' => 'rtm_edit_task_note',
+//    'rtm.test.echo' => 'rtm_test_echo',
+//    'rtm.test.login' => 'rtm_test_login',
+//    'rtm.time.convert' => 'rtm_convert_time',
+//    'rtm.time.parse' => 'rtm_parse_time',
+//    'rtm.timelines.create' => 'rtm_create_timeline',
+//    'rtm.timezones.getList' => 'rtm_get_timezones',
+//    'rtm.transactions.undo' => 'rtm_undo',
+   );
 }
 
 /**
@@ -100,170 +153,122 @@ function rtm_check_token($auth_token) {
 }
 
 /**
+ * @todo
  * Call method rtm.auth.getFrob.
- * 
- * @return 
- *  simplexml object
  */
+/*
 function rtm_get_frob() {
   $args = array('method' => 'rtm.auth.getFrob');
   $simplexml = rtm_call_method($args);
 }
+// */
 
 /**
  * @todo
  * Call method rtm.auth.getToken.
  */
+/*
+function rtm_get_token() {
+  $args = array('method' => 'rtm.auth.getToken');
+  $simplexml = rtm_call_method($args);
+}
+// */
 
 /**
  * @todo
  * Call method rtm.contacts.add.
  */
+// function rtm_add_contact() {}
 
 /**
  * @todo
  * Call method rtm.contacts.delete.
  */
+// function rtm_delete_contact() {}
 
 /**
  * @todo
  * Call method rtm.contacts.getList.
  */
+// function rtm_get_contact_list() {}
 
 /**
  * @todo
  * Call method rtm.groups.add.
  */
+// function rtm_add_group() {}
 
 /**
  * @todo
  * Call method rtm.groups.addContact.
  */
+// function rtm_add_contact_to_group() {}
 
 /**
  * @todo
  * Call method rtm.groups.delete.
  */
+// function rtm_delete_group() {}
 
 /**
  * @todo
  * Call method rtm.groups.getList.
  */
+// function rtm_get_group_list'() {}
 
 /**
  * @todo
  * Call method rtm.groups.removeContact.
  */
+// function rtm_remove_contact_from_group() {}
 
 /**
  * @todo
  * Call method rtm.lists.add.
  */
+// function rtm_add_list() {}
 
 /**
  * @todo
  * Call method rtm.lists.archive.
  */
+// function rtm_archive_list() {}
 
 /**
  * @todo
  * Call method rtm.lists.delete.
  */
+// function rtm_delete_list() {}
 
 /**
  * @todo
  * Call method rtm.lists.getList.
  */
+// function rtm_get_list() {}
 
 /**
  * @todo
  * Call method rtm.lists.setDefaultList.
  */
+// function rtm_set_default_list() {}
 
 /**
  * @todo
  * Call method rtm.lists.setName.
  */
+// function rtm_set_list_name() {}
 
 /**
  * @todo
  * Call method rtm.lists.unarchive.
  */
+// function rtm_unarchive_list() {}
 
 /**
  * @todo
- * Call method .
+ * Call method rtm.locations.getList.
  */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
-
-/**
- * @todo
- * Call method .
- */
+// function rtm_get_location_list() {}
 
 /**
  * Call method rtm.reflection.getMethods.
@@ -301,3 +306,177 @@ function rtm_get_method_info($method_name) {
   $simplexml = rtm_call_method($args);
   return $simplexml;   
 }
+
+/**
+ * @todo
+ * Call method rtm.settings.getList.
+ */
+// function rtm_get_settings() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.add.
+ */
+// function rtm_add_task() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.addTags.
+ */
+// function rtm_add_tags() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.complete.
+ */
+// function rtm_complete_task() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.delete.
+ */
+// function rtm_delete_task() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.getList.
+ */
+// function rtm_get_task_list() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.movePriority.
+ */
+// function rtm_move_task_priority() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.moveTo.
+ */
+// function rtm_task_move'() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.postpone.
+ */
+// function rtm_postpone_task() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.removeTags.
+ */
+// function rtm_remove_tags() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.setDueDate.
+ */
+// function rtm_set_task_due_date() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.setEstimate.
+ */
+// function rtm_set_task_estimate() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.setLocation.
+ */
+// function rtm_set_task_location() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.setName.
+ */
+// function rtm_set_task_name() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.setPriority.
+ */
+// function rtm_set_task_priority() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.setRecurrence.
+ */
+// function rtm_set_task_recurrence() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.setTags.
+ */
+// function rtm_set_task_tags() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.setURL.
+ */
+// function rtm_set_task_url() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.uncomplete.
+ */
+// function rtm_uncomplete_task() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.notes.add.
+ */
+// function rtm_add_task_note() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.notes.delete.
+ */
+// function rtm_delete_task_note() {}
+
+/**
+ * @todo
+ * Call method rtm.tasks.notes.edit.
+ */
+// function rtm_edit_task_note() {}
+
+/**
+ * @todo
+ * Call method rtm.test.echo.
+ */
+// function rtm_test_echo() {}
+
+/**
+ * @todo
+ * Call method rtm.test.login.
+ */
+// function rtm_test_login() {}
+
+/**
+ * @todo
+ * Call method rtm.time.convert.
+ */
+// function rtm_convert_time() {}
+
+/**
+ * @todo
+ * Call method rtm.time.parse.
+ */
+// function rtm_parse_time() {}
+
+/**
+ * @todo
+ * Call method rtm.timelines.create.
+ */
+// function rtm_create_timeline() {}
+
+/**
+ * @todo
+ * Call method rtm.timezones.getList.
+ */
+// function rtm_get_timezones() {}
+
+/**
+ * @todo
+ * Call method rtm.transactions.undo.
+ */
+// function rtm_undo() {}
