@@ -29,14 +29,252 @@ function rtm_perm() {
   return array('administer RTM');
 }
 
+//-------------------------------------//
+// RTM module hooks                    //
+//-------------------------------------//
+
+
+//-------------------------------------//
+// Internal functions                  //
+//-------------------------------------//
+
+//-------------------------------------------------------------//
+//  PHP functions for calling RTM methods                      //
+//  http://www.rememberthemilk.com/services/api/methods/       //
+//-------------------------------------------------------------//
+/** 
+ * Keep a running list of all supported RTM methods from functions below here.
+ * 
+ * @return array
+ *  rtm.method.name => corresponding_rtm_module_function
+ */
+function rtm_function_list() {
+  return array(
+    'rtm.auth.checkToken' => 'rtm_check_token',
+    'rtm.auth.getFrob' => 'rtm_get_frob',
+    'rtm.reflection.getMethods' => 'rtm_get_methods',
+    'rtm.reflection.getMethodInfo' => 'rtm_get_method_info',
+  );
+}
+
 /**
- * rtm.reflection.getMethod
+ * Wrapper function for calling RTM methods here:
+ * http://www.rememberthemilk.com/services/api/methods/ 
+ * 
+ * All RTM arguments (except api_key) should be passed here as $args.
+ * 
+ * @param $args
+ *  Array of key => value pairs to be included in REST call as paramaters. 
+ *  'method' => 'rtm.method.name' is a required argument.
+ * 
+ * @return $simplexml
+ *  A simple XML object with the XML returned by RTM.
+ */
+function rtm_call_method($args) {
+  $url = 'http://api.rememberthemilk.com/services/rest/?'; 
+  $api_key = variable_get('rtm_api_key', NULL); 
+  $url .= "api_key=$api_key";
+  foreach ($args as $key => $value) {
+    $url .= "&$key=$value";
+  }
+//dsm($url, $args['method']);
+  $simplexml = simplexml_load_file($url);
+  return $simplexml;
+}
+
+/**
+ * Call method rtm.auth.checkToken.
+ * 
+ * @param $auth_token
+ *   The authentication token to check.
+ * 
+ * @return $simplexml
+ *  simplexml object
+ */
+function rtm_check_token($auth_token) {
+  $args = array(
+    'method' => 'rtm.auth.checkToken', 
+    'auth_token' => $auth_token,
+  );
+  $simplexml = rtm_call_method($args);
+}
+
+/**
+ * Call method rtm.auth.getFrob.
+ * 
+ * @return 
+ *  simplexml object
+ */
+function rtm_get_frob() {
+  $args = array('method' => 'rtm.auth.getFrob');
+  $simplexml = rtm_call_method($args);
+}
+
+/**
+ * @todo
+ * Call method rtm.auth.getToken.
+ */
+
+/**
+ * @todo
+ * Call method rtm.contacts.add.
+ */
+
+/**
+ * @todo
+ * Call method rtm.contacts.delete.
+ */
+
+/**
+ * @todo
+ * Call method rtm.contacts.getList.
+ */
+
+/**
+ * @todo
+ * Call method rtm.groups.add.
+ */
+
+/**
+ * @todo
+ * Call method rtm.groups.addContact.
+ */
+
+/**
+ * @todo
+ * Call method rtm.groups.delete.
+ */
+
+/**
+ * @todo
+ * Call method rtm.groups.getList.
+ */
+
+/**
+ * @todo
+ * Call method rtm.groups.removeContact.
+ */
+
+/**
+ * @todo
+ * Call method rtm.lists.add.
+ */
+
+/**
+ * @todo
+ * Call method rtm.lists.archive.
+ */
+
+/**
+ * @todo
+ * Call method rtm.lists.delete.
+ */
+
+/**
+ * @todo
+ * Call method rtm.lists.getList.
+ */
+
+/**
+ * @todo
+ * Call method rtm.lists.setDefaultList.
+ */
+
+/**
+ * @todo
+ * Call method rtm.lists.setName.
+ */
+
+/**
+ * @todo
+ * Call method rtm.lists.unarchive.
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * @todo
+ * Call method .
+ */
+
+/**
+ * Call method rtm.reflection.getMethods.
+ * 
+ * @return $methods
+ *  Array of available methods.
  */
 function rtm_get_methods() {
-  $api_key = variable_get('rtm_api_key', NULL); 
-  $url = 'http://api.rememberthemilk.com/services/rest/?method=rtm.reflection.getMethods&api_key='. $api_key;
-  $xml = simplexml_load_file($url);
-  foreach ($xml->methods->method as $method) {
+  $args = array('method' => 'rtm.reflection.getMethods');
+  $simplexml = rtm_call_method($args);
+  foreach ($simplexml->methods->method as $method) {
     $method = (string)$method;
     $methods[] = $method;
   }
@@ -44,9 +282,22 @@ function rtm_get_methods() {
 }
 
 /**
- * rtm.reflection.getMethodInfo
+ * Call method rtm.reflection.getMethodInfo
+ * to get information about method.
+ * 
+ * @param $method_name
+ *  String, name of method about which info will be returned. 
+ * 
+ * @return $simplexml
+ *  simplexml object 
+ * 
+ * @todo Parse simplexml object and return $info as an array of information about $method_name.
  */
-function rtm_get_method_info() {
-  $api_key = variable_get('rtm_api_key', NULL); 
-  // CONTINUE HERE 
+function rtm_get_method_info($method_name) {
+  $args = array(
+    'method' => 'rtm.reflection.getMethodInfo',
+    'method_name' => $method_name,
+  );
+  $simplexml = rtm_call_method($args);
+  return $simplexml;   
 }

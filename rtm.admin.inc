@@ -20,8 +20,10 @@ function rtm_admin_settings() {
     )),
     '#default_value' => $api_key
   ); 
+  // Show all RTM methods available using the stored API key.
   if ($api_key) {
     $methods = rtm_get_methods($api_key);
+    $rtm_functions = rtm_function_list();
     $form['methods'] = array(
       '#type' => 'fieldset',
       '#title' => t('Available Methods'),
@@ -29,10 +31,18 @@ function rtm_admin_settings() {
       '#collapsed' => TRUE,
     );
     foreach($methods as $method) {
+      if ($rtm_functions[$method]) {
+        $value = t('Use function: !function', 
+                   array('!function' => '<strong>'. $rtm_functions[$method] .'</strong>'));
+      } else {
+        $value = 'Use rtm_call_method($args)';
+      }
       $form['methods'][$method] = array(
         '#type' => 'item',
         '#title' => $method,
-        '#description' => t('These are the available methods:'),
+        '#description' => t('This Remember the Milk method is available using '
+                           .'the stored API key.'),
+        '#value' => $value,
       );
     }
   } 
