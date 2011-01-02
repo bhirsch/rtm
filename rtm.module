@@ -3,4 +3,50 @@
  * @file rtm.module
  *  Drupal interface for Remember the Milk API.
  */ 
+/**
+ * Implementation of hook_menu.
+ */
+function rtm_menu() {
+  $items = array();
 
+  $items['admin/settings/rtm'] = array(
+    'title' => t('Remember the Milk Settings'), 
+    'description' => t('Configure settings'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('rtm_admin_settings'),
+    'access arguments' => array('administer RTM'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'rtm.admin.inc', 
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_perm.
+ */
+function rtm_perm() {
+  return array('administer RTM');
+}
+
+/**
+ * rtm.reflection.getMethod
+ */
+function rtm_get_methods() {
+  $api_key = variable_get('rtm_api_key', NULL); 
+  $url = 'http://api.rememberthemilk.com/services/rest/?method=rtm.reflection.getMethods&api_key='. $api_key;
+  $xml = simplexml_load_file($url);
+  foreach ($xml->methods->method as $method) {
+    $method = (string)$method;
+    $methods[] = $method;
+  }
+  return $methods;
+}
+
+/**
+ * rtm.reflection.getMethodInfo
+ */
+function rtm_get_method_info() {
+  $api_key = variable_get('rtm_api_key', NULL); 
+  // CONTINUE HERE 
+}
