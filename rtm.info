@@ -1,0 +1,5 @@
+; $Id$
+name = "Remember the Milk API"
+description = "Drupal interface for Remember the Milk API"
+core = "6.x"
+project = "Remember the Milk"
