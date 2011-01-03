@@ -10,6 +10,8 @@
  */
 function rtm_admin_settings() {
   $api_key = variable_get('rtm_api_key', NULL);
+  $shared_secret = variable_get('rtm_shared_secret', NULL);
+
   $form['rtm_api_key'] = array(
     '#type' => 'textfield',
     '#title' => t('RTM API Key'),
@@ -20,6 +22,14 @@ function rtm_admin_settings() {
     )),
     '#default_value' => $api_key
   ); 
+  $form['rtm_shared_secret'] = array(
+    '#type' => 'textfield',
+    '#title' => t('RTM Shared Secret'),
+    '#description' => t('You should have received your "shared secret" in the same email '
+                       .'where you received your API key.'),
+    '#default_value' => $shared_secret,
+  ); 
+
   // Show all RTM methods available using the stored API key.
   if ($api_key) {
     $methods = rtm_get_methods($api_key);

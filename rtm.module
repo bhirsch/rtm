@@ -136,6 +136,29 @@ function rtm_call_method($args) {
 }
 
 /**
+ * Generate RTM signature.
+ * 
+ * More info about generating signature here:
+ * http://www.rememberthemilk.com/services/api/authentication.rtm
+ * http://milkapi.com/
+ */
+function rtm_sig($args) {
+// CONTINUE HERE
+
+  // 1. Sort your parameters by key name, so that:
+  //     yxz=foo feg=bar abc=baz
+  //     becomes:
+  //     abc=baz feg=bar yxz=foo
+  // 2. Construct a string with all key/value pairs concatenated together:
+  //     abcbazfegbaryxzfoo
+  // 3. Concatenate the previous result onto your shared secret:
+  //     BANANASabcbazfegbaryxzfoo
+  // 4. Calculate the MD5 hash of this string:
+  //     md5('BANANASabcbazfegbaryxzfoo') -> 82044aae4dd676094f23f1ec152159ba
+  // 5. We now use this result, 82044aae4dd676094f23f1ec152159ba as our api_sig parameter.
+}
+
+/**
  * Call method rtm.auth.checkToken.
  * 
  * @param $auth_token
